@@ -2,6 +2,7 @@
 
 See how the lines of code in a GitHub repository changed over time. It is [star-history](https://github.com/star-history/star-history), but for code: give it `owner/repo`, get an SVG chart you can embed in your README, and it keeps itself up to date.
 
+<!-- This repository's own chart, worth showing once it has some history:
 <a href="https://loc-history.com/?repos=PaulGoldschmidt/lines-of-code-history">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://loc-history.com/svg?repos=PaulGoldschmidt/lines-of-code-history&theme=dark">
@@ -9,24 +10,25 @@ See how the lines of code in a GitHub repository changed over time. It is [star-
     <img alt="Lines of code history of this repository" src="https://loc-history.com/svg?repos=PaulGoldschmidt/lines-of-code-history&theme=light">
   </picture>
 </a>
+-->
 
-That is this repository's own chart, served live by [loc-history.com](https://loc-history.com). Several repositories on one chart, for example express and star-history:
+Here is vitejs/vite, served live by [loc-history.com](https://loc-history.com), hand-drawn with `style=sketch` and counted from its first commit with `axis=timeline`:
+
+<a href="https://loc-history.com/?repos=vitejs/vite&style=sketch&axis=timeline">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://loc-history.com/svg?repos=vitejs/vite&style=sketch&axis=timeline&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://loc-history.com/svg?repos=vitejs/vite&style=sketch&axis=timeline&theme=light">
+    <img alt="Sketch-style lines of code timeline of vitejs/vite" src="https://loc-history.com/svg?repos=vitejs/vite&style=sketch&axis=timeline&theme=light">
+  </picture>
+</a>
+
+Several repositories on one chart, in the default clean style, for example express and star-history:
 
 <a href="https://loc-history.com/?repos=expressjs/express,star-history/star-history">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://loc-history.com/svg?repos=expressjs/express,star-history/star-history&theme=dark">
     <source media="(prefers-color-scheme: light)" srcset="https://loc-history.com/svg?repos=expressjs/express,star-history/star-history&theme=light">
     <img alt="Lines of code history of expressjs/express and star-history/star-history" src="https://loc-history.com/svg?repos=expressjs/express,star-history/star-history&theme=light">
-  </picture>
-</a>
-
-Prefer it hand-drawn, with every repository starting at its first commit? Add `style=sketch` and `axis=timeline`:
-
-<a href="https://loc-history.com/?repos=expressjs/express,pallets/flask&style=sketch&axis=timeline">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://loc-history.com/svg?repos=expressjs/express,pallets/flask&style=sketch&axis=timeline&theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://loc-history.com/svg?repos=expressjs/express,pallets/flask&style=sketch&axis=timeline&theme=light">
-    <img alt="Sketch-style timeline of expressjs/express and pallets/flask" src="https://loc-history.com/svg?repos=expressjs/express,pallets/flask&style=sketch&axis=timeline&theme=light">
   </picture>
 </a>
 
@@ -188,17 +190,6 @@ npm install
 npm test          # builds, then runs node --test against dist/test/*.test.js
 npm run dev       # builds and starts the server
 ```
-
-Layout:
-
-- `src/github.ts`: GitHub API client with 202/404/422/rate-limit handling.
-- `src/loader.ts`: LRU cache with stale-while-revalidate, request de-duplication, GitHub concurrency limit, background polling, persistence (`src/cache.ts`, `src/limiter.ts`, `src/store.ts`).
-- `src/series.ts`: weekly rows to cumulative series.
-- `src/chart.ts`: the SVG renderer (no dependencies).
-- `src/handler.ts`: the HTTP routes as a fetch-style handler.
-- `src/page.ts`: the web UI.
-- `src/git-local.ts` and `src/cli.ts`: local git history and the command line.
-- `action.yml`: the composite GitHub Action, which runs the CLI.
 
 ## License
 
